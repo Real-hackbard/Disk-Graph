@@ -42,7 +42,7 @@ However, the variable R (String) could have been declared global. It is only use
 # TeeChart:
 TeeChart, in its standard version, has been an integral part of the Delphi installation (RAD Studio) for many years and is free for users of this IDE. This standard version is included in most Delphi editions (Professional, Enterprise, Architect).
 
-The paid TeeChart Pro version, however, is a full-featured extension that must be purchased directly from Steema Software or through partners such as ComponentSource.
+The paid TeeChart Pro version, however, is a full-featured extension that must be purchased directly from [Steema Software](https://www.componentsource.com/de/product/steema-teechart-vcl-standard) or through partners such as ComponentSource.
 
 ### Key points about the versions:
 
