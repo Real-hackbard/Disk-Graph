@@ -37,6 +37,21 @@ However, the variable R (String) could have been declared global. It is only use
 
 "So why make this distinction? Just declare everything locally and we won't have any problems!" you might say. The problem is precisely that we might have problems. The local variables of a procedure or function are created on the stack (a specific memory area), and the number of nested calls of a recursive function is neither known nor controlled. While this number isn't very large when traversing a disk's directory tree (that's its greatest depth), it's a different story with the recursive sorting algorithm quicksort (see the Delphi Threads demo) when manipulating large sets. We then risk encountering the message "Stack Overflow".
 
+</br>
+
+# TeeChart:
+TeeChart, in its standard version, has been an integral part of the Delphi installation (RAD Studio) for many years and is free for users of this IDE. This standard version is included in most Delphi editions (Professional, Enterprise, Architect).
+
+The paid TeeChart Pro version, however, is a full-featured extension that must be purchased directly from Steema Software or through partners such as ComponentSource.
+
+### Key points about the versions:
+
+* TeeChart Standard (included in Delphi): Free, limited functionality, for basic charts.
+
+* TeeChart Pro (paid): Offers advanced chart types, 3D capabilities, tools, and data analysis features. Prices for current versions (such as TeeChart Pro 2025/2026) often start in the three-figure range.
+
+* Trial versions: These display a notification window (nag screen) and have limited functionality.
+
 
 
 
