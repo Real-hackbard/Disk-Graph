@@ -15,7 +15,27 @@ Select a folder on the left and click the 'Scan' button or Right-click on a sect
 
 The contents of the root directory (actually the entire disk) are stored (this takes quite a while the first time) which poses a problem if you switch disks (only the contents are stored) The free space checkbox, if selected, allows the free portion of the disk to be displayed when the root directory is examined.
 
+</br>
 
+![Disk](https://github.com/user-attachments/assets/886c0f81-d861-4bc8-87c1-5a12a437b6f2)
+
+</br>
+
+This program, like most programs that deal with the hard drive, uses a recursive algorithm. In this case, it's the FindRep procedure which calls itself.
+
+Indeed, to browse a hard drive (or a directory on that drive), you list the files and subdirectories, then for each of these, their files and subdirectories, and so on... until you reach the end of a branch, where there are no more subdirectories.
+
+Therefore, only one procedure is needed, listing the files and subdirectories of a directory, this procedure being re-executed for each of the subdirectories then considered as the base directory.
+
+There are a few precautions to take with this type of procedure.
+
+To execute correctly, the recursive procedure must not have its environment modified by a call to itself. It is necessary to declare all variables used by this procedure precisely.
+
+Here, in the FindRep procedure, the variable Sd (TSearchRec) is modified within the procedure and is used both before and after the recursive call. Therefore, it MUST be declared as a local variable. Each time the procedure is called, a new SD variable is created, specific to that execution.
+
+However, the variable R (String) could have been declared global. It is only used to pass the name of the directory to be explored, and its valueupon return from the FindRep procedure is no longer important.
+
+"So why make this distinction? Just declare everything locally and we won't have any problems!" you might say. The problem is precisely that we might have problems. The local variables of a procedure or function are created on the stack (a specific memory area), and the number of nested calls of a recursive function is neither known nor controlled. While this number isn't very large when traversing a disk's directory tree (that's its greatest depth), it's a different story with the recursive sorting algorithm quicksort (see the Delphi Threads demo) when manipulating large sets. We then risk encountering the message "Stack Overflow".
 
 
 
