@@ -10,6 +10,11 @@
 
 </br>
 
+# Use:
+Select a folder on the left and click the 'Scan' button or Right-click on a section of the pie chart to browse it. Right-click on the pie chart to go up one level in the directory hierarchy.
+
+The contents of the root directory (actually the entire disk) are stored (this takes quite a while the first time) which poses a problem if you switch disks (only the contents are stored) The free space checkbox, if selected, allows the free portion of the disk to be displayed when the root directory is examined.
+
 
 
 
