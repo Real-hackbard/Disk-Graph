@@ -35,7 +35,8 @@
 
 * However, the variable R (String) could have been declared global. It is only used to pass the name of the directory to be explored, and its valueupon return from the FindRep procedure is no longer important.
 
-"So why make this distinction? Just declare everything locally and we won't have any problems!" you might say. The problem is precisely that we might have problems. The local variables of a procedure or function are created on the stack (a specific memory area), and the number of nested calls of a recursive function is neither known nor controlled. While this number isn't very large when traversing a disk's directory tree (that's its greatest depth), it's a different story with the recursive sorting algorithm quicksort (see the Delphi Threads demo) when manipulating large sets. We then risk encountering the message "Stack Overflow".
+### "So why make this distinction? 
+* Just declare everything locally and we won't have any problems!" you might say. The problem is precisely that we might have problems. The local variables of a procedure or function are created on the stack (a specific memory area), and the number of nested calls of a recursive function is neither known nor controlled. While this number isn't very large when traversing a disk's directory tree (that's its greatest depth), it's a different story with the recursive sorting algorithm quicksort (see the Delphi Threads demo) when manipulating large sets. We then risk encountering the message ```"Stack Overflow"```.
 
 </br>
 
