@@ -52,7 +52,86 @@ The paid TeeChart Pro version, however, is a full-featured extension that must b
 
 * Trial versions: These display a notification window (nag screen) and have limited functionality.
 
+</br>
 
+# Scan Disk/Partition or Folder
+The program can search entire partitions and folders in their entirety or for specific file formats.
+
+</br>
+
+```pascal
+procedure TForm1.Button1Click(Sender: TObject);
+var
+ i, size : InTeger;
+ x : int64;
+ Ptr:^TDisk;
+ Racine : boolean;
+begin
+  Screen.Cursor := crHourGlass;
+  Chart1.Title.Text[0]:= 'searching, please wait..';
+  Application.ProcessMessages;
+
+  PosFree:=-1;
+  Current:= Edit1.Text;
+  if Current[length(Current)]='\' then
+    delete(Current,length(Current),1);
+  if not ListRootDone or (length(Current)>2) then
+    begin
+      List.Clear;           // Clear the results list
+      Racine:=False;
+      Cherche;              // Course
+      List.Sort(Folder);    // Sort by size
+      if (length(Current)=2) and (pos(':',Current)=2) then
+        begin               // Root C:, D: or X:
+          ListRoot.Clear;   // We erase
+          for i:=0 to List.Count-1 do   // We're copying this for our records.
+            begin
+              New(Ptr);
+              Ptr^:=TDisk(List.Items[i]^);
+              ListRoot.Add(Ptr);
+            end;
+          ListRootDone:=True;  // That's it, we've got the root memorized.
+          Racine:=True;
+        end;
+    end
+  else
+    begin
+      List.Clear;                // We retrieve the stored results for the root
+      for i:=0 to ListRoot.Count-1 do
+        begin
+          New(Ptr);
+          Ptr^:=TDisk(ListRoot.Items[i]^);
+          List.Add(Ptr);
+          Racine:=True;
+        end;
+    end;
+  // Camembert drawing preparation - series 1
+  series1.Clear;
+  for i:=0 to List.Count-1 do
+    begin
+      With Series1 do
+        if TDisk(List.Items[i]^).rep<>'free' then
+          begin
+           add(TDisk(List.Items[i]^).Compte /1024,
+               TDisk(List.Items[i]^).rep,MyPalette[i]);
+           if pos(':\',TDisk(List.Items[i]^).rep)>0 then
+             PosLocation:=i;
+          end
+       else
+        begin
+          if Form2.CheckBox2.Checked and Racine then
+               add(TDisk(List.Items[i]^).Compte /1024,
+                          TDisk(List.Items[i]^).rep,clSilver);
+             PosFree:=i;
+           end;
+    end;
+  x:=0;
+  for i:=0 to list.Count-1 do
+    x:=x+ TDisk(List.Items[i]^).Compte;
+  Chart1.Title.Text[0]:= IntToStr(x div 1024  )+' Mb';
+  Screen.Cursor := crDefault;
+end;
+```
 
 
 
